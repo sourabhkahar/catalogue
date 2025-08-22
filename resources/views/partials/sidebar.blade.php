@@ -7,7 +7,7 @@
     :class="sidebarToggle ? 'justify-center' : 'justify-between'"
     class="flex items-center gap-2 pt-8 sidebar-header pb-7"
   >
-    <a href="index.html">
+    <a href="{{route('dashboard')}}">
       <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
         <img class="dark:hidden" src="./images/logo/logo.svg" alt="Logo" />
         <img
@@ -122,7 +122,7 @@
               >
                 <li>
                   <a
-                    href="index.html"
+                    href="{{route('dashboard')}}"
                     class="menu-dropdown-item group"
                     :class="page === 'ecommerce' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
                   >
