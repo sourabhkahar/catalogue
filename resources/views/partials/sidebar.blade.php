@@ -9,10 +9,10 @@
   >
     <a href="{{route('dashboard')}}">
       <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
-        <img class="dark:hidden" src="./images/logo/logo.svg" alt="Logo" />
+        <img class="dark:hidden" src="{{url('/images/logo/logo.svg')}}" alt="Logo" />
         <img
           class="hidden dark:block"
-          src="./images/logo/logo-dark.svg"
+          src="{{url('/images/logo/logo-dark')}}.svg"
           alt="Logo"
         />
       </span>
@@ -20,7 +20,7 @@
       <img
         class="logo-icon"
         :class="sidebarToggle ? 'lg:block' : 'hidden'"
-        src="./images/logo/logo-icon.svg"
+        src="{{url('/images/logo/logo-icon')}}.svg"
         alt="Logo"
       />
     </a>
