@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use App\Http\Requests\CatalogStoreRequest;
+use Illuminate\Container\Attributes\Auth;
 
 class CatalogController extends Controller
 {
@@ -12,7 +14,7 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.catalog.index');
     }
 
     /**
@@ -20,15 +22,20 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.catalog.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CatalogStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        Catalog::create($data);
+
+        return redirect()->route('catalog.index')
+                         ->with('success', 'Catalog created successfully.');
     }
 
     /**
@@ -44,7 +51,7 @@ class CatalogController extends Controller
      */
     public function edit(Catalog $catalog)
     {
-        //
+        return 'id';
     }
 
     /**
