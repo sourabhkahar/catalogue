@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -20,14 +24,22 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('admin.user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProfileUpdateRequest $request)
     {
-        //
+        $data = $request->validated();
+        $userRole = Role::where('name','user')->first();
+        $data['password'] = Hash::make('password');
+        $user = User::create($data);
+
+        $user->assignRole($userRole);
+
+        return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
 
     /**
